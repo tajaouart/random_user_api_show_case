@@ -31,3 +31,6 @@ doc/api/
 # exclude auto generated file
 *.g.dart
 *.freezed.dart
+*.iconfig.dart
+*.config.dart
+*.gr.dart

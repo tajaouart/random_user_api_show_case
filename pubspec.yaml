@@ -23,6 +23,7 @@ dependencies:
   freezed_annotation:
   provider:
   get_it:
+  path:
 
 dev_dependencies:
   flutter_test:

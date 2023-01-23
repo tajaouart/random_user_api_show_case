@@ -14,20 +14,51 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(),
-      body: Consumer<UserViewModel>(
-        builder: (BuildContext context, value, Widget? child) {
-          final users = value.users;
+      appBar: AppBar(
+        title: Text('All Users'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Consumer<UserViewModel>(
+          builder: (_, vm, __) {
+            final users = vm.users;
 
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(users.length, (index) {
-                return Text(users[index].firstName ?? '');
-              }),
-            ),
-          );
-        },
+            return vm.state.map(
+              initial: (_) => const SizedBox(),
+              error: (_) => const Center(
+                child: Icon(
+                  Icons.error,
+                  color: Colors.red,
+                ),
+              ),
+              loading: (_) {
+                return const Center(child: CircularProgressIndicator());
+              },
+              loaded: (_) {
+                if (users.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'Empty',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                }
+
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(
+                      users.length,
+                      (index) {
+                        return Text(users[index].firstName ?? '');
+                      },
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

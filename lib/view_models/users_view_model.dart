@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:random_user_api/infrastructure/api/user_repository.dart';
+import 'package:random_user_api/infrastructure/repositories/user_repository.dart';
 
 import '../models/user.dart';
 import 'view_model.dart';
@@ -37,10 +37,11 @@ class UserViewModel extends ViewModel<UserVMState> {
         loading: () => true,
       );
 
+  /// This method loads the data for the view model by fetching the users from the API and the local database
   Future<void> loadData() async {
     changeState(const UserVMState.loading());
 
-    await fetchApiData();
+    await fetchUsers();
   }
 
   int get currentPage {
@@ -70,12 +71,22 @@ class UserViewModel extends ViewModel<UserVMState> {
     );
   }
 
-  Future<void> fetchApiData() async {
-    final result = await _userRepository.getUsers(
+  /// This method fetches the users from the API and the local database
+  Future<void> fetchUsers() async {
+    // First get users from local db if any
+    await _getLocalUsers();
+
+    // Now try fetching users from API
+    await _getApiUsers();
+  }
+
+  /// Fetches users from API.
+  Future<void> _getApiUsers() async {
+    final remoteUsers = await _userRepository.getUsersFromApi(
       page: currentPage,
       results: resultsNbr,
     );
-    return result.fold((left) {
+    return remoteUsers.fold((left) {
       if (users.isEmpty) {
         changeState(const UserVMState.error());
       }
@@ -95,5 +106,22 @@ class UserViewModel extends ViewModel<UserVMState> {
         ),
       );
     });
+  }
+
+  /// Gets users that were stored locally.
+
+  Future<void> _getLocalUsers() async {
+    final localUsers = await _userRepository.getUsersFromLocalDb(
+      page: currentPage,
+      results: resultsNbr,
+    );
+
+    changeState(
+      UserVMState.loaded(
+        users: localUsers,
+        currentPage: currentPage,
+        resultsNbr: resultsNbr,
+      ),
+    );
   }
 }

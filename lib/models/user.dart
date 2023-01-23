@@ -21,6 +21,23 @@ class User {
     );
   }
 
+  factory User.fromMap(Map<String, dynamic> json) {
+    return User(
+      firstName: json['first_name'],
+      lastName: json['last_name'],
+      email: json['email'],
+    );
+  }
+
+  static List<User> fromJsonList(List<dynamic> jsonArray) {
+    return List.generate(
+      jsonArray.length,
+      (index) {
+        return User.fromMap(jsonArray[index]);
+      },
+    );
+  }
+
   @override
   String toString() {
     return 'User{firstName: $firstName, lastName: $lastName, email: $email}';

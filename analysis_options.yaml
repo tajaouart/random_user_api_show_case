@@ -4,6 +4,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - "**/*.freezed.dart"
+    - "**/*.config.dart"
     - "lib/injection.config.dart"
     - "lib/generated_plugin_registrant.dart"
     - "**/*.g.dart"
