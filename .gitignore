@@ -25,3 +25,9 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+
+
+# exclude auto generated file
+*.g.dart
+*.freezed.dart
