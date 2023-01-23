@@ -5,10 +5,10 @@ import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../models/user.dart';
 import '../dao/user_dao.dart';
 import '../error/app_error.dart';
 import '../api/user_api.dart';
+import '../models/user.dart';
 
 /// A singleton class that holds the functionality for fetching Users from the API
 @singleton

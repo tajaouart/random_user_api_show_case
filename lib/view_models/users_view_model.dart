@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:random_user_api/infrastructure/repositories/user_repository.dart';
 
-import '../models/user.dart';
+import '../infrastructure/models/user.dart';
 import 'view_model.dart';
 
 part 'users_view_model.freezed.dart';

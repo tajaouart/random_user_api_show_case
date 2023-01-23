@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:sqflite/sqflite.dart';
 
-import '../../models/user.dart';
+import '../models/user.dart';
 
 class UserDao {
   final Database _database;

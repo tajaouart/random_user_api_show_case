@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../models/user.dart';
+import '../../infrastructure/models/user.dart';
+
 
 class UserDetailsPage extends StatelessWidget {
   const UserDetailsPage({required this.user, Key? key}) : super(key: key);

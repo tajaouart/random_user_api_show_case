@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:random_user_api/pages/user_details/user_details_page.dart';
 import 'package:random_user_api/shared/utils/nav.dart';
 
-import '../../../models/user.dart';
+import '../../../infrastructure/models/user.dart';
 
 class UserWidget extends StatelessWidget {
   const UserWidget({
