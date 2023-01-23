@@ -28,6 +28,9 @@ abstract class RegisterModule {
           'first_name TEXT,'
           'last_name TEXT,'
           'email TEXT,'
+          'large_image TEXT,'
+          'medium_image TEXT,'
+          'thumbnail TEXT,'
           'PRIMARY KEY (email));',
         );
       },

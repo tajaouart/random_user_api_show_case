@@ -1,15 +1,28 @@
 class User {
-  String? firstName;
-  String? lastName;
-  String? email;
+  final String firstName;
+  final String lastName;
+  final String email;
+  final String largeImage;
+  final String mediumImage;
+  final String thumbnail;
 
-  User({this.firstName, this.lastName, this.email});
+  User({
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.largeImage,
+    required this.mediumImage,
+    required this.thumbnail,
+  });
 
   Map<String, dynamic> toMap() {
     return {
       'first_name': firstName,
       'last_name': lastName,
       'email': email,
+      'large_image': largeImage,
+      'medium_image': mediumImage,
+      'thumbnail': thumbnail,
     };
   }
 
@@ -18,6 +31,9 @@ class User {
       firstName: json['name']['first'],
       lastName: json['name']['last'],
       email: json['email'],
+      largeImage: json['picture']['large'] ?? '',
+      mediumImage: json['picture']['medium'] ?? '',
+      thumbnail: json['picture']['thumbnail'] ?? '',
     );
   }
 
@@ -26,6 +42,9 @@ class User {
       firstName: json['first_name'],
       lastName: json['last_name'],
       email: json['email'],
+      largeImage: json['large_image'],
+      mediumImage: json['medium_image'],
+      thumbnail: json['thumbnail'],
     );
   }
 

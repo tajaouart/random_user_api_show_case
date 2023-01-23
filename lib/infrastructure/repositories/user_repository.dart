@@ -41,7 +41,9 @@ class UserRepository {
         var jsonResponse = response.data;
         List<dynamic> jsonUsers = jsonResponse['results'];
         // Convert the JSON response to a list of User models
-        final users = jsonUsers.map((user) => User.fromJson(user)).toList();
+        final users = jsonUsers.map((user) {
+          return User.fromJson(user);
+        }).toList();
         _usersDao.insertAllUsers(users);
         return Right(users);
       } else {
