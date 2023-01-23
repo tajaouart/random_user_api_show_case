@@ -100,8 +100,8 @@ class UserViewModel extends ViewModel<UserVMState> {
 
       changeState(
         UserVMState.loaded(
-          users: users,
-          currentPage: currentPage,
+          users: this.users + users,
+          currentPage: currentPage + 1,
           resultsNbr: resultsNbr,
         ),
       );
@@ -118,8 +118,8 @@ class UserViewModel extends ViewModel<UserVMState> {
 
     changeState(
       UserVMState.loaded(
-        users: localUsers,
-        currentPage: currentPage,
+        users: users + localUsers,
+        currentPage: currentPage + 1,
         resultsNbr: resultsNbr,
       ),
     );
