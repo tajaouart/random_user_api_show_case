@@ -1,6 +1,15 @@
 # random_user_api
 
 
+###  Important 
+
+The project uses some code-generation libraries so ensure to run the following command:
+
+```sh
+ flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+
 ### Technical Choices
 
 - For the API client, I used the `dio` package to make the HTTP requests.
